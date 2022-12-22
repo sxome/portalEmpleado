@@ -1,0 +1,61 @@
+CREATE TABLE USUARIO (
+	id INTEGER AUTO_INCREMENT NOT NULL,
+	username VARCHAR(100) NOT NULL,
+    nombre VARCHAR(200),
+	email VARCHAR(250),
+	password VARCHAR(100) NOT NULL,
+	estatus VARCHAR(20),
+	fecha_registro DATE,
+	PRIMARY KEY(id),
+	CONSTRAINT UK_Usuario_0 UNIQUE (username)
+    );
+    
+CREATE TABLE PERFIL (
+	id INTEGER AUTO_INCREMENT NOT NULL,
+	perfil VARCHAR(20) NOT NULL,
+	PRIMARY KEY(id),
+	CONSTRAINT UK_Perfil_0 UNIQUE (id,perfil)
+    );
+	
+CREATE TABLE USUARIO_PERFIL (
+	id INTEGER AUTO_INCREMENT NOT NULL,
+	id_usuario INTEGER NOT NULL,
+	id_perfil INTEGER NOT NULL,
+	PRIMARY KEY(id),
+	FOREIGN KEY (id_perfil) REFERENCES PERFIL(id),
+	FOREIGN KEY (id_usuario) REFERENCES USUARIO(id)
+    );
+	
+CREATE TABLE CATEGORIA (
+	id INTEGER AUTO_INCREMENT NOT NULL,
+    nombre VARCHAR(200) NOT NULL,
+	descripcion VARCHAR(500) NOT NULL,
+	PRIMARY KEY(id)
+    );
+	
+CREATE TABLE VACANTE (
+	id INTEGER AUTO_INCREMENT NOT NULL,
+    nombre VARCHAR(200) NOT NULL,
+	descripcion VARCHAR(500) NOT NULL,
+	fecha DATE NOT NULL,
+	salario NUMERIC(10),
+	destacado BOOLEAN,
+	imagen VARCHAR(500),
+	estatus VARCHAR(20),
+	detalles CLOB,
+	id_categoria INTEGER,
+	PRIMARY KEY(id),
+	FOREIGN KEY (id_categoria) REFERENCES CATEGORIA(id)
+    );
+
+CREATE TABLE INSCRIPCION (
+	id INTEGER AUTO_INCREMENT NOT NULL,
+    id_vacante INTEGER,
+	id_usuario INTEGER,
+	fecha_inscripcion DATE NOT NULL,
+	PRIMARY KEY(id),
+	FOREIGN KEY (id_vacante) REFERENCES VACANTE(id),
+	FOREIGN KEY (id_usuario) REFERENCES USUARIO(id),
+	CONSTRAINT UK_Inscripcion_0 UNIQUE (id_vacante,id_usuario)
+	
+    );
