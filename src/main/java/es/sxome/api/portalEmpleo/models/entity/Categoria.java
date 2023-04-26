@@ -32,4 +32,5 @@ public class Categoria extends AbstractEntidadDominio{
 	@Size(max = 500, message = "No se pueden introducir mas de 500 caracteres en el campo descripcion")
 	private String descripcion;
 
+	// prueba para CRQ_1
 }
