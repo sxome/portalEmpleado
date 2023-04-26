@@ -44,4 +44,5 @@ public class Inscripcion extends AbstractEntidadDominio{
 	@Temporal(TemporalType.TIMESTAMP)
 	private Date fechaInscripcion;
 
+	// prueba CRQ_2
 }
